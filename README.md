@@ -4,6 +4,8 @@
 
 A macOS Finder context menu extension for copying file paths with one click. Supports both absolute and relative paths.
 
+The installer **auto-detects your system language** and installs localized menu items (Chinese or English).
+
 By default, macOS requires Option+Right Click to copy a path, and only supports absolute paths. With this tool:
 
 - Right Click → Quick Actions → **Copy Absolute Path** (e.g. `/Users/you/Documents/file.txt`)
@@ -26,7 +28,7 @@ Or double-click `install.command` in Finder — it will open Terminal and run th
 
 1. Download and extract this repository
 2. In Finder, press **Cmd+Shift+G**, type `~/Library/Services/` and hit Enter
-3. Drag the two `.workflow` folders from `workflows/` into that directory
+3. Drag the two `.workflow` folders from `workflows/en/` (or `workflows/zh-CN/` for Chinese) into that directory
 4. Open Terminal and run:
 
 ```bash
@@ -44,6 +46,11 @@ The path is now on your clipboard. Cmd+V to paste.
 ## Uninstall
 
 ```bash
+# English version
+rm -rf ~/Library/Services/Copy\ Absolute\ Path.workflow
+rm -rf ~/Library/Services/Copy\ Relative\ Path.workflow
+
+# Chinese version
 rm -rf ~/Library/Services/复制绝对路径.workflow
 rm -rf ~/Library/Services/复制相对路径.workflow
 ```
@@ -87,24 +94,18 @@ Built on macOS Automator Quick Actions (Services menu). The workflows are create
 
 ```
 finder-copy-path/
-├── README.md               # English documentation
-├── README.zh-CN.md         # Chinese documentation
-├── PRD.md                  # Product requirements doc
-├── DEVLOG.md               # Development log
-├── install.command
+├── README.md                   # English documentation
+├── README.zh-CN.md             # Chinese documentation
+├── PRD.md                      # Product requirements doc
+├── DEVLOG.md                   # Development log
+├── install.command             # Auto-detects language
 └── workflows/
-    ├── 复制绝对路径.workflow/
-    │   └── Contents/
-    │       ├── Info.plist
-    │       ├── document.wflow
-    │       └── QuickLook/
-    │           └── Thumbnail.png
-    └── 复制相对路径.workflow/
-        └── Contents/
-            ├── Info.plist
-            ├── document.wflow
-            └── QuickLook/
-                └── Thumbnail.png
+    ├── en/
+    │   ├── Copy Absolute Path.workflow/
+    │   └── Copy Relative Path.workflow/
+    └── zh-CN/
+        ├── 复制绝对路径.workflow/
+        └── 复制相对路径.workflow/
 ```
 
 </details>

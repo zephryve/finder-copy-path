@@ -4,6 +4,8 @@
 
 macOS Finder 右键菜单扩展：选中文件后一键复制路径，支持绝对路径和相对路径。
 
+安装脚本会**自动检测系统语言**，中文系统显示中文菜单，其他语言显示英文菜单。
+
 macOS 原生需要 Option+右键 才能复制路径，而且只有绝对路径。装上这个小工具后：
 
 - 右键 → 快速操作 → **复制绝对路径**（如 `/Users/you/Documents/file.txt`）
@@ -26,7 +28,7 @@ bash finder-copy-path/install.command
 
 1. 下载本仓库，解压
 2. 打开 Finder，按 **Cmd+Shift+G**，输入 `~/Library/Services/` 回车
-3. 把 `workflows/` 下的两个 `.workflow` 文件夹拖进去
+3. 把 `workflows/zh-CN/`（或英文系统用 `workflows/en/`）下的两个 `.workflow` 文件夹拖进去
 4. 打开终端，执行：
 
 ```bash
@@ -44,8 +46,13 @@ bash finder-copy-path/install.command
 ## 卸载
 
 ```bash
+# 中文版
 rm -rf ~/Library/Services/复制绝对路径.workflow
 rm -rf ~/Library/Services/复制相对路径.workflow
+
+# 英文版
+rm -rf ~/Library/Services/Copy\ Absolute\ Path.workflow
+rm -rf ~/Library/Services/Copy\ Relative\ Path.workflow
 ```
 
 ## 常见问题
@@ -87,24 +94,18 @@ rm -rf ~/Library/Services/复制相对路径.workflow
 
 ```
 finder-copy-path/
-├── README.md               # English documentation
-├── README.zh-CN.md         # 中文文档
-├── PRD.md              # 产品需求文档
-├── DEVLOG.md           # 开发踩坑记录
-├── install.command
+├── README.md                   # 英文文档
+├── README.zh-CN.md             # 中文文档
+├── PRD.md                      # 产品需求文档
+├── DEVLOG.md                   # 开发踩坑记录
+├── install.command             # 自动检测语言
 └── workflows/
-    ├── 复制绝对路径.workflow/
-    │   └── Contents/
-    │       ├── Info.plist          # 服务注册（菜单名、触发条件、文件类型过滤）
-    │       ├── document.wflow      # workflow 定义（含 shell script）
-    │       └── QuickLook/
-    │           └── Thumbnail.png
-    └── 复制相对路径.workflow/
-        └── Contents/
-            ├── Info.plist
-            ├── document.wflow
-            └── QuickLook/
-                └── Thumbnail.png
+    ├── en/
+    │   ├── Copy Absolute Path.workflow/
+    │   └── Copy Relative Path.workflow/
+    └── zh-CN/
+        ├── 复制绝对路径.workflow/
+        └── 复制相对路径.workflow/
 ```
 
 </details>
